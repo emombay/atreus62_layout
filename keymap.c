@@ -20,7 +20,6 @@
  #define KN_DQT  LSFT(KC_2)      // "
  #define KN_AT   RALT(KC_2)      // @
  #define KN_HASH LSFT(KC_3)      // #
- #define KN_EUR  LSFT(KC_4)      // €
  #define KN_DLR  RALT(KC_4)      // $
  #define KN_PERC LSFT(KC_5)      // %
  #define KN_AMPR LSFT(KC_6)      // &
@@ -100,24 +99,24 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------|                 |------+------+------+------+------+--------|
  * |  Tab   |   Q  |   D  |   R  |   W  |   B  |                 |   J  |   F  |   U  |   P  |   ;  |   \    |
  * |--------+------+------+------+------+------|                 |------+------+------+------+------+--------|
- * |   L1   |   A  |   S  |   H  |   T  |   G  |                 |   Y  |   N  |   E  |   O  |   I  |   '    |
+ * |  CODE  |   A  |   S  |   H  |   T  |   G  |                 |   Y  |   N  |   E  |   O  |   I  |   '    |
  * |--------+------+------+------+------+------|------.   .------|------+------+------+------+------+--------|
  * | LShift |   Z  |   X  |   M  |   C  |   V  |      |   |      |   K  |   L  |   ,  |   .  |/ ~L3 | RShift |
  * |--------+------+------+------+------+------|Back  |   |Enter |-------------+------+------+------+--------|
- * | LCtrl  |AltTab| LGui |      |      | UTIL |Space |   |      |Space | Left | Down |  Up  |Right | ->L1   |
+ * | LCtrl  |AltTab| LGui |  Alt |      | UTIL |Space |   |      |Space | Left | Down |  Up  |Right | UPPER  |
  * `--------------------------------------------------'   '--------------------------------------------------'
   */
   [BASE] = {
 
-   { M(KF_11) ,M(KF_1)  ,M(KF_2)  ,M(KF_3)  ,M(KF_4) ,M(KF_5)  ,KC_NO   ,M(KF_6) ,M(KF_7) ,M(KF_8) ,M(KF_9) ,M(KF_10) ,M(KF_12) },
-   { KC_TAB   ,KC_Q     ,KC_W     ,KC_E     ,KC_R    ,KC_T     ,KC_NO   ,KC_Y    ,KC_U    ,KC_I    ,KC_O    ,KC_P     ,KN_AO },
-   { OSM_LCTL ,KC_A     ,KC_S     ,KC_D     ,KC_F    ,KC_G     ,KC_NO   ,KC_H    ,KC_J    ,KC_K    ,KC_L    ,KN_OE    ,KN_AE },
-   { OSM_LSFT ,KC_Z     ,KC_X     ,KC_C     ,KC_V    ,KC_B     ,KC_DELT ,KC_N    ,KC_M    ,KC_COMM ,KC_DOT  ,KN_MINS  ,OSM_LSFT },
-   { MO(NAV)  ,OSM_LCTL ,OSM_LALT ,KC_LGUI  ,MO(SYM) ,KC_BSPC  ,KC_ENT  ,KC_SPC  ,MO(SYM) ,KC_LEAD ,KC_LALT ,KC_LCTRL ,KC_HYP }
+   { KC_ESC   ,KC_1     ,KC_2     ,KC_3     ,KC_4    ,KC_5     ,_______ ,M(KF_6) ,M(KF_7) ,M(KF_8) ,M(KF_9) ,M(KF_10) ,M(KF_12) },
+   { KC_TAB   ,KC_Q     ,KC_D     ,KC_R     ,KC_W    ,KC_B     ,_______ ,KC_Y    ,KC_U    ,KC_I    ,KC_O    ,KC_P     ,KN_AO },
+   { OSM_LCTL ,KC_A     ,KC_S     ,KC_D     ,KC_F    ,KC_G     ,_______ ,KC_H    ,KC_J    ,KC_K    ,KC_L    ,KN_OE    ,KN_AE },
+   { OSM_LSFT ,KC_Z     ,KC_X     ,KC_C     ,KC_V    ,KC_B     ,KC_BSPC ,KC_N    ,KC_M    ,KC_COMM ,KC_DOT  ,KN_MINS  ,OSM_LSFT },
+   { MO(NAV)  ,OSM_LCTL ,OSM_LALT ,KC_LGUI  ,MO(SYM) ,UTIL     ,KC_ENT  ,KC_SPC  ,KC_LEFT ,KC_DOWN ,KC_UP   ,KC_RGHT  ,KC_HYP }
 
  },
 
- /* Keymap 0: QUERTY layer
+ /* Keymap 1: QUERTY layer
  *
  * ,-------------------------------------------.                 ,-------------------------------------------.
  * |        |      |      |      |      |      |                 |      |      |      |      |      |        |
@@ -141,7 +140,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   },
 
-   /* Keymap 0: UTIL layer
+   /* Keymap 1: Code layer
+ *
+ * ,-------------------------------------------.                 ,-------------------------------------------.
+ * |        |      |      |      |      |      |                 |      |      |      |      |      |        |
+ * |--------+------+------+------+------+------|                 |------+------+------+------+------+--------|
+ * |        |   Q  |   W  |   E  |   R  |   T  |                 |   Y  |   U  |   I  |   O  |   P  |   \    |
+ * |--------+------+------+------+------+------|                 |------+------+------+------+------+--------|
+ * |        |   A  |   S  |   D  |   F  |   G  |                 |   H  |   J  |   K  |   L  |   ;  |   '    |
+ * |--------+------+------+------+------+------|------.   .------|------+------+------+------+------+--------|
+ * |        |   Z  |   X  |   C  |   V  |   B  |      |   |      |   N  |   M  |   ,  |   .  |   /  |        |
+ * |--------+------+------+------+------+------|      |   |      |-------------+------+------+------+--------|
+ * |        |      |      |      |      |      |      |   |      |      |      |      |      |      |        |
+ * `--------------------------------------------------'   '--------------------------------------------------'
+  */
+
+   /* Keymap 2: UTIL (Lower) layer
  *
  * ,-------------------------------------------.                 ,-------------------------------------------.
  * |    `   |  F1  |  F2  |  F3  |  F4  |  F5  |                 |  F6  |  F7  |  F8  |  F9  |  F10 |  F11   |
@@ -164,6 +178,36 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    { _______  ,_______  ,_______  ,_______  ,_______  ,_______   ,_______ ,_______    ,_______  ,_______  ,_______  ,_______  ,_______ }
 
   }
+
+    /* Keymap 3: Raise/Num layer
+ *
+ * ,-------------------------------------------.                 ,-------------------------------------------.
+ * |        |      |      |      |      |      |                 |      |      |      |      |      |        |
+ * |--------+------+------+------+------+------|                 |------+------+------+------+------+--------|
+ * |        |      | Lclk | MsUp | Rclk |      |                 |      |   7  |   8  |   9  |      |        |
+ * |--------+------+------+------+------+------|                 |------+------+------+------+------+--------|
+ * |        |      |MsLeft|MsDown|MsRght|      |                 |      |   4  |   5  |   6  |      |        |
+ * |--------+------+------+------+------+------|------.   .------|------+------+------+------+------+--------|
+ * |        |      |      |      | App  |      |      |   |      |      |   1  |   2  |   3  |      |        |
+ * |--------+------+------+------+------+------|      |   |      |-------------+------+------+------+--------|
+ * |        |      |      |      | UTIL |      |      |   |      |      |   0  |   0  |   .  |      |        |
+ * `--------------------------------------------------'   '--------------------------------------------------'
+  */
+
+  /* Keymap 4: Config layer
+ *
+ * ,-------------------------------------------.                 ,-------------------------------------------.
+ * |        |      |      |      |      |      |                 |      |      |      |      |AGnorm| AGswap | 
+ * |--------+------+------+------+------+------|                 |------+------+------+------+------+--------|
+ * |        |      |      |      |      |      |                 |      |      |      |      |      |        |
+ * |--------+------+------+------+------+------|                 |------+------+------+------+------+--------|
+ * |        |      |      |      |      |      |                 |      |      |WRKMN |QWERTY|      |        |
+ * |--------+------+------+------+------+------|------.   .------|------+------+------+------+------+--------|
+ * |        |      |      |      |      |      |      |   |      |      |      |      |      |      |        |
+ * |--------+------+------+------+------+------|      |   |      |-------------+------+------+------+--------|
+ * |        |      |      |      |      |      |      |   |      |      |      |      |      |      |        |
+ * `--------------------------------------------------'   '--------------------------------------------------'
+  */
 };
 
 #define TAP_ONCE(code)  \
@@ -298,28 +342,4 @@ void matrix_init_user(void) {
 LEADER_EXTERNS();
 // Runs constantly in the background, in a loop.
 void matrix_scan_user(void) {
-  LEADER_DICTIONARY() {
-    leading = false;
-    leader_end();
-    SEQ_ONE_KEY(KC_L){
-      register_code(KC_RGUI);
-      TAP_ONCE(KC_L);
-      unregister_code(KC_RGUI);
-    };
-
-    SEQ_TWO_KEYS (KC_S, KC_S) {
-      // ¯\_(ツ)_/¯
-      unicode_input_start(); register_hex(0xaf); unicode_input_finish();
-      register_code (KC_LALT);
-      register_code (KC_LCTL);
-      TAP_ONCE (KN_PLUS);
-      unregister_code (KC_LCTL);
-      unregister_code (KC_LALT);
-
-      register_code (KC_RSFT); TAP_ONCE (KC_8); unregister_code (KC_RSFT);
-      unicode_input_start (); register_hex(0x30c4); unicode_input_finish();
-      register_code (KC_RSFT); TAP_ONCE (KC_9); TAP_ONCE(KC_7); unregister_code (KC_RSFT);
-      unicode_input_start (); register_hex(0xaf); unicode_input_finish();
-    }
-  };
 };

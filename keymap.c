@@ -17,7 +17,7 @@
 #define _CODE 2
 #define _UTIL 3
 #define _RAISE 4
-#define _ADJUST 16
+#define _ADJUST 5
 // Layers
 enum preonic_keycodes {
   WRKMN = 0,
@@ -31,9 +31,11 @@ enum preonic_keycodes {
 // Tapdance
 enum {
   TD_FUN = 0,
-  TD_EQ
+  TD_3EQ,
+  TD_2EQ
 };
 #define ALTTAB 1
+#define CTRLWIN 2
 
 //State and timers
 uint16_t kf_timers[12];
@@ -60,7 +62,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    { KC_ESC,   KC_1,     KC_2,    KC_3,    KC_4,       KC_5,   KC_NO,   KC_6,    KC_7,    KC_8,    KC_9,    KC_0 ,    RAISE },
    { KC_TAB,   KC_Q,     KC_D,    KC_R,    KC_W,       KC_B,   KC_NO,   KC_J,    KC_F,    KC_U,    KC_P,    KC_SCLN,  KC_BSLS },
    { CODE,     KC_A,     KC_S,    KC_H,    KC_T,       KC_G,   KC_NO,   KC_Y,    KC_N,    KC_E,    KC_O,    KC_I,     KC_QUOT },
-   { KC_LSFT,  KC_Z,     KC_X,    KC_M,    KC_C,       KC_V,   KC_BSPC, KC_K,    KC_L,    KC_COMM, KC_DOT,  KN_MINS,  OSM_LSFT },
+   { KC_LSFT,  KC_Z,     KC_X,    KC_M,    KC_C,       KC_V,   KC_BSPC, KC_K,    KC_L,    KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFT },
    { KC_LCTL,  M(ALTTAB),KC_LGUI, KC_LALT, M(CTRLWIN), UTIL,   KC_ENT,  KC_SPC,  KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT,  TT(_RAISE) }
 
  },
@@ -89,14 +91,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   },
 
-   /* Keymap 1: Code layer
+   /* Keymap 2: Code layer
  *
  * ,-------------------------------------------.                 ,-------------------------------------------.
  * |        |      |      |      |      |      |                 |      |      |      |      |      |        |
  * |--------+------+------+------+------+------|                 |------+------+------+------+------+--------|
- * |        |   +  |   =  |   {  |   }  |   |  |                 |      |      |      |      |      |        |
+ * |        |   +  |   =  |   {  |   }  |   |  |                 |      |      |TD_2EQ|      |      |        |
  * |--------+------+------+------+------+------|                 |------+------+------+------+------+--------|
- * |        |   &  |   -  |   (  |   )  |   `  |                 |      |      |TD_EQ |TD_FUN|      |        |
+ * |        |   &  |   -  |   (  |   )  |   `  |                 |      |      |TD_3EQ|TD_FUN|      |        |
  * |--------+------+------+------+------+------|------.   .------|------+------+------+------+------+--------|
  * |        |   <  |   >  |   [  |   ]  |   ~  |      |   |      |      |      |      |      |      |        |
  * |--------+------+------+------+------+------|      |   |      |-------------+------+------+------+--------|
@@ -106,54 +108,63 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_CODE] = {
 
-   { _______  ,_______      ,_______      ,_______  ,_______  ,_______  ,_______ , _______  ,_______  ,_______   ,_______  ,_______  ,_______ },
-   { _______  ,LSFT(KC_EQL), KC_EQL,       KC_LCBR,  KC_RCBR,  KC_PIPE,  _______ , _______  ,_______  ,_______   ,_______  ,_______  ,_______ },
-   { _______  ,LSFT(KC_7),   KC_MINS,      KC_LPRN,  KC_RPRN,  KC_GRV,   _______ , _______  ,TD(TD_EQ),TD(TD_FUN),_______  ,_______  ,_______ },
-   { _______  ,LSFT(KC_COMM),LSFT(KC_DOT), KC_LBRC,  KC_RBRC,  KC_TILD,  _______ , _______  ,_______  ,_______   ,_______  ,_______  ,_______ },
-   { _______  ,KC_F8,        KC_F9,        KC_F10,   KC_F11,   _______  ,_______ , _______  ,_______  ,_______   ,_______  ,_______  ,_______ }
+   { _______  ,_______      ,_______      ,_______  ,_______  ,_______  ,_______ , _______  ,_______  ,  _______,    _______  ,_______  ,_______ },
+   { _______  ,LSFT(KC_EQL), KC_EQL,       KC_LCBR,  KC_RCBR,  KC_PIPE,  _______ , _______  ,TD(TD_2EQ), _______,    _______  ,_______  ,_______ },
+   { _______  ,LSFT(KC_7),   KC_MINS,      KC_LPRN,  KC_RPRN,  KC_GRV,   _______ , _______  ,TD(TD_3EQ),  TD(TD_FUN),_______  ,_______  ,_______ },
+   { _______  ,LSFT(KC_COMM),LSFT(KC_DOT), KC_LBRC,  KC_RBRC,  KC_TILD,  _______ , _______  ,_______  ,  _______,    _______  ,_______  ,_______ },
+   { _______  ,KC_F8,        KC_F9,        KC_F10,   KC_F11,   _______  ,_______ , _______  ,_______  ,  _______,    _______  ,_______  ,_______ }
 
   },
 
-   /* Keymap 2: UTIL (Lower) layer
+   /* Keymap 3: UTIL (Lower) layer
  *
  * ,-------------------------------------------.                 ,-------------------------------------------.
  * |    `   |  F1  |  F2  |  F3  |  F4  |  F5  |                 |  F6  |  F7  |  F8  |  F9  |  F10 |  F11   |
  * |--------+------+------+------+------+------|                 |------+------+------+------+------+--------|
  * |Ctrl+Tab|      |      |Ctrl+W|      |Delete|                 |      |      |      |      |      |  F12   |
  * |--------+------+------+------+------+------|                 |------+------+------+------+------+--------|
- * |        |  All | Save |      |      |   _  |                 |      | Home |PgDown| PgUp | End  |        |
+ * |        |  All | Save |      |      |   _  |                 |      | Home |PgDown| PgUp | End  | Insert |
  * |--------+------+------+------+------+------|------.   .------|------+------+------+------+------+--------|
  * |        |      | Cut  |      | Copy |Paste |      |   |      | Prev | Next | Vol- | Vol+ | Play |        |
  * |--------+------+------+------+------+------|      |   |      |-------------+------+------+------+--------|
  * |CtrAltDl|      |      | Undo | Redo |      |      |   |      |      |Ctrl+<|Ctrl+^|Ctrl+v|Ctrl+>|        |
  * `--------------------------------------------------'   '--------------------------------------------------'
   */
-  [SYM] = {
+  [_UTIL] = {
 
-   { _______  ,_______  ,_______  ,_______  ,_______  ,TD(TD_EQ) ,KC_NO   ,TD(TD_FUN) ,_______  ,_______  ,_______  ,_______  ,_______ },
-   { _______  ,KN_LABK  ,KN_RABK  ,KN_LCBR  ,KN_RCBR  ,KN_PLUS   ,KC_NO   ,KN_AT      ,KN_DQT   ,KN_QUOT  ,KN_GRAV  ,KN_SLSH  ,_______ },
-   { _______  ,KN_EXLM  ,KN_EQL   ,KN_LPRN  ,KN_RPRN  ,KN_MINS   ,KC_NO   ,KN_UNDS    ,KN_CIRC  ,KN_DLR   ,KN_AMPR  ,KN_PIPE  ,_______ },
-   { _______  ,KN_EUR   ,KN_PERC  ,KN_LBRC  ,KN_RBRC  ,KN_ASTR   ,_______ ,KN_HASH    ,KN_SCLN  ,KN_COLN  ,KN_QUES  ,KN_BSLS  ,_______ },
-   { _______  ,_______  ,_______  ,_______  ,_______  ,_______   ,_______ ,_______    ,_______  ,_______  ,_______  ,_______  ,_______ }
+   { KC_GRV,              KC_F1,     KC_F2,     KC_F3,     KC_F4,     KC_F5,     _______, KC_F6,      KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11 },
+   { LCTL(KC_A),          _______,   _______  , LCTL(KC_W),_______  , KC_DELT   ,_______, _______    ,_______  ,_______  ,_______  ,_______  ,KC_F12 },
+   { _______,             LCTL(KC_A),LCTL(KC_S),_______,   _______  , KC_UNDS   ,_______, _______    ,KC_HOME  ,KC_PGDN  ,KC_PGUP  ,KC_END,   KC_INS },
+   { _______,             _______,   LCTL(KC_X),_______,   LCTL(KC_C),LCTL(KC_V),_______ ,KC_MPRV    ,KC_MNXT  ,KC_VOLD  ,KC_VOLU  ,KC_MPLY  ,_______ },
+   { LCTL(LALT(KC_DELT)), _______,   _______,  LCTL(KC_Z), LCTL(KC_Y), _______  ,_______ ,_______    ,_______  ,_______  ,_______  ,_______  ,_______ }
 
-  }
+  },
 
-    /* Keymap 3: Raise/Num layer
+    /* Keymap 4: Raise/Num layer
  *
  * ,-------------------------------------------.                 ,-------------------------------------------.
- * |        |      |      |      |      |      |                 |      |      |      |      |      |        |
+ * |        |      |      |      |      |      |                 |      |      |   /  |   *  |   -  |        |
  * |--------+------+------+------+------+------|                 |------+------+------+------+------+--------|
- * |        |      | Lclk | MsUp | Rclk |      |                 |      |   7  |   8  |   9  |      |        |
+ * |        |      | Lclk | MsUp | Rclk |      |                 |      |   7  |   8  |   9  |   +  |        |
  * |--------+------+------+------+------+------|                 |------+------+------+------+------+--------|
- * |        |      |MsLeft|MsDown|MsRght|      |                 |      |   4  |   5  |   6  |      |        |
+ * |        |      |MsLeft|MsDown|MsRght|      |                 |      |   4  |   5  |   6  |   +  |        |
  * |--------+------+------+------+------+------|------.   .------|------+------+------+------+------+--------|
- * |        |      |      |      | App  |      |      |   |      |      |   1  |   2  |   3  |      |        |
+ * |        |      |      |      | App  |      |      |   |      |      |   1  |   2  |   3  |Enter |        |
  * |--------+------+------+------+------+------|      |   |      |-------------+------+------+------+--------|
  * |        |      |      |      |      | UTIL |      |   |      |      |   0  |   0  |   .  |      |        |
  * `--------------------------------------------------'   '--------------------------------------------------'
   */
+  [_RAISE] = {
 
-  /* Keymap 4: Adjust layer
+   { _______  ,_______  ,_______  ,_______  ,_______  ,_______  ,_______ ,_______  ,_______, KC_PSLS, KC_PAST, KC_PMNS,  _______ },
+   { _______  ,_______,  KC_BTN1,  KC_MS_U,  KC_BTN2,  _______,  _______ ,_______,  KC_KP_7, KC_KP_8, KC_KP_9, KC_PPLS,  _______ },
+   { _______  ,_______,  KC_MS_L,  KC_MS_D,  KC_MS_R,  _______,  _______ ,_______,  KC_KP_4, KC_KP_5, KC_KP_6, KC_PPLS,  _______ },
+   { _______  ,_______,  _______,  _______,  KC_APP,   _______,  _______ ,_______,  KC_KP_1, KC_KP_2, KC_KP_3, KC_PENT,  _______ },
+   { _______  ,_______  ,_______  ,_______  ,_______ , UTIL,     _______, _______,  KC_KP_0, KC_KP_0, KC_PDOT, _______,  _______ }
+
+  },
+
+  /* Keymap 5: Adjust layer
  *
  * ,-------------------------------------------.                 ,-------------------------------------------.
  * |        |      |      |      |      |      |                 |      |      |      |      |AGnorm| AGswap | 
@@ -167,6 +178,15 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |        |      |      |      |      |      |      |   |      |      |      |      |      |      |        |
  * `--------------------------------------------------'   '--------------------------------------------------'
   */
+  [_ADJUST] = {
+
+   { _______  ,_______,  _______,  _______,  _______,  _______,  _______ ,_______,  _______,  _______,  _______,  AG_NORM,  AG_SWAP },
+   { _______  ,_______,  _______,  _______,  _______,  _______,  _______ ,_______,  _______,  _______,  _______,  _______,  _______ },
+   { _______  ,_______,  _______,  _______,  _______,  _______,  _______ ,_______,  WRKMN,    QWERTY,   _______,  _______,  _______ },
+   { _______  ,_______,  _______,  _______,  _______,  _______,  _______ ,_______,  _______,  _______,  _______,  _______,  _______ },
+   { _______  ,_______,  _______,  _______,  _______,  _______,  _______ ,_______,  _______,  _______,  _______,  _______,  _______ }
+
+  }
 };
 
 // TAP DANCE SETTINGS
@@ -199,10 +219,17 @@ void dance_eq (qk_tap_dance_state_t *state, void *user_data) {
       unregister_code(KC_LSHIFT);
       m_tapn(KC_EQL, KC_EQL, 0);
       break;
-    case 3: // ==
+    default:
+      reset_tap_dance(state);
+  }
+}
+
+void dance_two_eq (qk_tap_dance_state_t *state, void *user_data) {
+  switch (state->count) {
+    case 1: // ==
       m_tapn(KC_EQL, KC_EQL, 0);
       break;
-    case 4: // !=
+    case 2: // !=
       register_code(KC_LSHIFT);
       m_tapn(KC_1, 0);
       unregister_code(KC_LSHIFT);
@@ -227,12 +254,8 @@ void dance_fun (qk_tap_dance_state_t *state, void *user_data) {
       unregister_code(KC_LSFT);
       m_tapn(KC_EQL, 0);
       register_code(KC_LSFT);
-      m_tapn(KC_DOT, 0);
+      m_tapn(KC_DOT, KC_SPC, KC_LBRC, KC_RBRC, 0);
       unregister_code(KC_LSFT);
-      register_code(KC_RALT);
-      m_tapn(KC_7, 0);
-      unregister_code(KC_RALT);
-      TAP_ONCE(KC_ENT);
       break;
     default:
       reset_tap_dance(state);
@@ -241,7 +264,8 @@ void dance_fun (qk_tap_dance_state_t *state, void *user_data) {
 
 qk_tap_dance_action_t tap_dance_actions[] = {
  [TD_FUN] = ACTION_TAP_DANCE_FN (dance_fun)
- ,[TD_EQ] = ACTION_TAP_DANCE_FN (dance_eq)
+ ,[TD_3EQ] = ACTION_TAP_DANCE_FN (dance_eq)
+ ,[TD_2EQ] = ACTION_TAP_DANCE_FN (dance_two_eq)
 };
 
 void persistant_default_layer_set(uint16_t default_layer) {
@@ -316,7 +340,9 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 void matrix_init_user(void) {
 };
 
-LEADER_EXTERNS();
+const uint16_t PROGMEM fn_actions[] = {
+};
+
 // Runs constantly in the background, in a loop.
 void matrix_scan_user(void) {
 };

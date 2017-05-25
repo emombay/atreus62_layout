@@ -136,7 +136,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    { LCTL(KC_TAB),        _______,   _______  , LCTL(KC_W),_______  , KC_DELT   ,_______, _______    ,_______  ,_______  ,_______  ,_______  ,KC_F12 },
    { _______,             LCTL(KC_A),LCTL(KC_S),_______,   _______  , KC_UNDS   ,_______, _______    ,KC_HOME  ,KC_PGDN  ,KC_PGUP  ,KC_END,   KC_INS },
    { _______,             _______,   LCTL(KC_X),_______,   KC_COPY,   KC_PASTE,  _______ ,KC_MPRV    ,KC_MNXT  ,KC_VOLD  ,KC_VOLU  ,KC_MPLY  ,_______ },
-   { LCTL(LALT(KC_DELT)), _______,   _______,   KC_UNDO,   KC_REDO,    _______  ,_______ ,_______    ,_______  ,_______  ,_______  ,_______  ,_______ }
+   { LCTL(LALT(KC_DELT)), _______,   _______,   KC_UNDO,   KC_REDO,   _______,   _______ ,_______    ,_______  ,_______  ,_______  ,_______  ,_______ }
 
   },
 

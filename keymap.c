@@ -135,8 +135,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    { KC_GRV,              KC_F1,     KC_F2,     KC_F3,     KC_F4,     KC_F5,     _______, KC_F6,      KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11 },
    { LCTL(KC_TAB),        _______,   _______  , LCTL(KC_W),_______  , KC_DELT   ,_______, _______    ,_______  ,_______  ,_______  ,_______  ,KC_F12 },
    { _______,             LCTL(KC_A),LCTL(KC_S),_______,   _______  , KC_UNDS   ,_______, _______    ,KC_HOME  ,KC_PGDN  ,KC_PGUP  ,KC_END,   KC_INS },
-   { _______,             _______,   LCTL(KC_X),_______,   LCTL(KC_C),LCTL(KC_V),_______ ,KC_MPRV    ,KC_MNXT  ,KC_VOLD  ,KC_VOLU  ,KC_MPLY  ,_______ },
-   { LCTL(LALT(KC_DELT)), _______,   _______,  LCTL(KC_Z), LCTL(KC_Y), _______  ,_______ ,_______    ,_______  ,_______  ,_______  ,_______  ,_______ }
+   { _______,             _______,   LCTL(KC_X),_______,   KC_COPY,   KC_PASTE,  _______ ,KC_MPRV    ,KC_MNXT  ,KC_VOLD  ,KC_VOLU  ,KC_MPLY  ,_______ },
+   { LCTL(LALT(KC_DELT)), _______,   _______,   KC_UNDO,   KC_REDO,    _______  ,_______ ,_______    ,_______  ,_______  ,_______  ,_______  ,_______ }
 
   },
 

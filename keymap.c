@@ -11,6 +11,9 @@
 #define KC_PASTE LCTL(KC_V)
 #define KC_UNDO LCTL(KC_Z)
 #define KC_REDO LCTL(KC_Y)
+#define KC_CUT LCTL(KC_X)
+#define KC_ALL LCTL(KC_A)
+#define KC_SAVE LCTL(KC_S)
 
 #define _WRKMN 0
 #define _QWERTY 1
@@ -133,9 +136,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_UTIL] = {
 
    { KC_GRV,              KC_F1,     KC_F2,     KC_F3,     KC_F4,     KC_F5,     _______, KC_F6,      KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11 },
-   { LCTL(KC_TAB),        _______,   _______  , LCTL(KC_W),_______  , KC_DELT   ,_______, _______    ,_______  ,_______  ,_______  ,_______  ,KC_F12 },
-   { _______,             LCTL(KC_A),LCTL(KC_S),_______,   _______  , KC_UNDS   ,_______, _______    ,KC_HOME  ,KC_PGDN  ,KC_PGUP  ,KC_END,   KC_INS },
-   { _______,             _______,   LCTL(KC_X),_______,   KC_COPY,   KC_PASTE,  _______ ,KC_MPRV    ,KC_MNXT  ,KC_VOLD  ,KC_VOLU  ,KC_MPLY  ,_______ },
+   { LCTL(KC_TAB),        _______,   _______,   LCTL(KC_W),_______,   KC_DELT   ,_______, _______    ,_______  ,_______  ,_______  ,_______  ,KC_F12 },
+   { _______,             KC_ALL,    KC_SAVE,   _______,   _______,   KC_UNDS   ,_______, _______    ,KC_HOME  ,KC_PGDN  ,KC_PGUP  ,KC_END,   KC_INS },
+   { _______,             _______,   KC_CUT,    _______,   KC_COPY,   KC_PASTE,  _______ ,KC_MPRV    ,KC_MNXT  ,KC_VOLD  ,KC_VOLU  ,KC_MPLY  ,_______ },
    { LCTL(LALT(KC_DELT)), _______,   _______,   KC_UNDO,   KC_REDO,   _______,   _______ ,_______    ,_______  ,_______  ,_______  ,_______  ,_______ }
 
   },

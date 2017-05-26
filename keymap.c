@@ -23,7 +23,7 @@
 #define _ADJUST 5
 // Layers
 enum preonic_keycodes {
-  WRKMN = 0,
+  WRKMN = SAFE_RANGE,
   QWERTY,
   CODE,
   UTIL,
@@ -49,7 +49,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Base Workman layer
  *
  * ,-------------------------------------------.                 ,-------------------------------------------.
- * |  Esc   |   1  |   2  |   3  |   4  |   5  |                 |   6  |   7  |   8  |   9  |   0  |  RAISE |
+ * |Ctrl/Win|   1  |   2  |   3  |   4  |   5  |                 |   6  |   7  |   8  |   9  |   0  |  RAISE |
  * |--------+------+------+------+------+------|                 |------+------+------+------+------+--------|
  * |  Tab   |   Q  |   D  |   R  |   W  |   B  |                 |   J  |   F  |   U  |   P  |   ;  |   \    |
  * |--------+------+------+------+------+------|                 |------+------+------+------+------+--------|
@@ -57,16 +57,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------|------.   .------|------+------+------+------+------+--------|
  * | LShift |   Z  |   X  |   M  |   C  |   V  |      |   |      |   K  |   L  |   ,  |   .  |   /  | RShift |
  * |--------+------+------+------+------+------|Back  |   |Enter |-------------+------+------+------+--------|
- * | LCtrl  |AltTab| LGui |  Alt |crl/Wn| UTIL |Space |   |      |Space | Left | Down |  Up  |Right |TT(Rai) |
+ * | LCtrl  |AltTab| LGui |  Alt | ESC  | UTIL |Space |   |      |Space | Left | Down |  Up  |Right |TT(Rai) |
  * `--------------------------------------------------'   '--------------------------------------------------'
   */
   [_WRKMN] = {
 
-   { KC_ESC,   KC_1,     KC_2,    KC_3,    KC_4,       KC_5,   KC_NO,   KC_6,    KC_7,    KC_8,    KC_9,    KC_0 ,    RAISE },
-   { KC_TAB,   KC_Q,     KC_D,    KC_R,    KC_W,       KC_B,   KC_NO,   KC_J,    KC_F,    KC_U,    KC_P,    KC_SCLN,  KC_BSLS },
-   { CODE,     KC_A,     KC_S,    KC_H,    KC_T,       KC_G,   KC_NO,   KC_Y,    KC_N,    KC_E,    KC_O,    KC_I,     KC_QUOT },
-   { KC_LSFT,  KC_Z,     KC_X,    KC_M,    KC_C,       KC_V,   KC_BSPC, KC_K,    KC_L,    KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFT },
-   { KC_LCTL,  M(ALTTAB),KC_LGUI, KC_LALT, M(CTRLWIN), UTIL,   KC_ENT,  KC_SPC,  KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT,  TT(_RAISE) }
+   { M(CTRLWIN), KC_1,     KC_2,    KC_3,    KC_4,       KC_5,   KC_NO,   KC_6,    KC_7,    KC_8,    KC_9,    KC_0 ,    TO(_RAISE) },
+   { KC_TAB,     KC_Q,     KC_D,    KC_R,    KC_W,       KC_B,   KC_NO,   KC_J,    KC_F,    KC_U,    KC_P,    KC_SCLN,  KC_BSLS },
+   { CODE,       KC_A,     KC_S,    KC_H,    KC_T,       KC_G,   KC_NO,   KC_Y,    KC_N,    KC_E,    KC_O,    KC_I,     KC_QUOT },
+   { KC_LSFT,    KC_Z,     KC_X,    KC_M,    KC_C,       KC_V,   KC_BSPC, KC_K,    KC_L,    KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFT },
+   { KC_LCTL,    M(ALTTAB),KC_LGUI, KC_LALT, KC_ESC,     UTIL,   KC_ENT,  KC_SPC,  KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT,  RAISE }
 
  },
 
@@ -124,7 +124,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-------------------------------------------.                 ,-------------------------------------------.
  * |    `   |  F1  |  F2  |  F3  |  F4  |  F5  |                 |  F6  |  F7  |  F8  |  F9  |  F10 |  F11   |
  * |--------+------+------+------+------+------|                 |------+------+------+------+------+--------|
- * |Ctrl+Tab|      |      |Ctrl+W|      |Delete|                 |      |      |      |      |      |  F12   |
+ * |Ctrl+Tab|      |Ctrl+D|Ctrl+R|Ctrl+W|Delete|                 |      |      |      |      |      |  F12   |
  * |--------+------+------+------+------+------|                 |------+------+------+------+------+--------|
  * |        |  All | Save |      |      |   _  |                 |      | Home |PgDown| PgUp | End  | Insert |
  * |--------+------+------+------+------+------|------.   .------|------+------+------+------+------+--------|
@@ -135,18 +135,18 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   */
   [_UTIL] = {
 
-   { KC_GRV,              KC_F1,     KC_F2,     KC_F3,     KC_F4,     KC_F5,     _______, KC_F6,      KC_F7,    KC_F8,    KC_F9,    KC_F10,   KC_F11 },
-   { LCTL(KC_TAB),        _______,   _______,   LCTL(KC_W),_______,   KC_DELT   ,_______, _______    ,_______  ,_______  ,_______  ,_______  ,KC_F12 },
-   { _______,             KC_ALL,    KC_SAVE,   _______,   _______,   KC_UNDS   ,_______, _______    ,KC_HOME  ,KC_PGDN  ,KC_PGUP  ,KC_END,   KC_INS },
-   { _______,             _______,   KC_CUT,    _______,   KC_COPY,   KC_PASTE,  _______ ,KC_MPRV    ,KC_MNXT  ,KC_VOLD  ,KC_VOLU  ,KC_MPLY  ,_______ },
-   { LCTL(LALT(KC_DELT)), _______,   _______,   KC_UNDO,   KC_REDO,   _______,   _______ ,_______    ,_______  ,_______  ,_______  ,_______  ,_______ }
+   { KC_GRV,              KC_F1,     KC_F2,     KC_F3,     KC_F4,     KC_F5,     _______, KC_F6,      KC_F7,         KC_F8,         KC_F9,       KC_F10,         KC_F11 },
+   { LCTL(KC_TAB),        _______,   LCTL(KC_D),LCTL(KC_R),LCTL(KC_W),KC_DELT   ,_______, _______    ,_______,       _______,       _______,     _______,        KC_F12 },
+   { _______,             KC_ALL,    KC_SAVE,   _______,   _______,   KC_UNDS   ,_______, _______    ,KC_HOME,       KC_PGDN,       KC_PGUP,     KC_END,         KC_INS },
+   { _______,             _______,   KC_CUT,    _______,   KC_COPY,   KC_PASTE,  _______ ,KC_MPRV    ,KC_MNXT,       KC_VOLD,       KC_VOLU,     KC_MPLY,        _______ },
+   { LCTL(LALT(KC_DELT)), _______,   _______,   KC_UNDO,   KC_REDO,   _______,   _______ ,_______    ,LCTL(KC_LEFT), LCTL(KC_DOWN), LCTL(KC_UP), LCTL(KC_RGHT),  _______ }
 
   },
 
     /* Keymap 4: Raise/Num layer
  *
  * ,-------------------------------------------.                 ,-------------------------------------------.
- * |        |      |      |      |      |      |                 |      |      |   /  |   *  |   -  |        |
+ * |        |      |      |      |      |      |                 |      |      |   /  |   *  |   -  |  WRKM  |
  * |--------+------+------+------+------+------|                 |------+------+------+------+------+--------|
  * |        |      | Lclk | MsUp | Rclk |      |                 |      |   7  |   8  |   9  |   +  |        |
  * |--------+------+------+------+------+------|                 |------+------+------+------+------+--------|
@@ -159,7 +159,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   */
   [_RAISE] = {
 
-   { _______  ,_______  ,_______  ,_______  ,_______  ,_______  ,_______ ,_______  ,_______, KC_PSLS, KC_PAST, KC_PMNS,  _______ },
+   { _______  ,_______  ,_______  ,_______  ,_______  ,_______  ,_______ ,_______  ,_______, KC_PSLS, KC_PAST, KC_PMNS,  TO(_WRKMN) },
    { _______  ,_______,  KC_BTN1,  KC_MS_U,  KC_BTN2,  _______,  _______ ,_______,  KC_KP_7, KC_KP_8, KC_KP_9, KC_PPLS,  _______ },
    { _______  ,_______,  KC_MS_L,  KC_MS_D,  KC_MS_R,  _______,  _______ ,_______,  KC_KP_4, KC_KP_5, KC_KP_6, KC_PPLS,  _______ },
    { _______  ,_______,  _______,  _______,  KC_APP,   _______,  _______ ,_______,  KC_KP_1, KC_KP_2, KC_KP_3, KC_PENT,  _______ },
@@ -284,6 +284,13 @@ const macro_t *action_get_macro(keyrecord_t *record, uint8_t id, uint8_t opt)
       return MACRO( D(LALT), D(TAB), W(200), U(TAB), END );
     } else {
       return MACRO( U(LALT), END );
+    }
+    break;
+    case CTRLWIN: 
+    if (record->event.pressed) {
+      return MACRO( D(LCTL), D(LGUI), END );
+    } else {
+      return MACRO( U(LGUI), U(LCTL), END );
     }
     break;
   }

@@ -126,7 +126,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |--------+------+------+------+------+------|                 |------+------+------+------+------+--------|
  * |Ctrl+Tab|      |Ctrl+D|Ctrl+R|Ctrl+W|Delete|                 |      |      |      |      |      |  F12   |
  * |--------+------+------+------+------+------|                 |------+------+------+------+------+--------|
- * |        |  All | Save |      |      |   _  |                 |      | Home |PgDown| PgUp | End  | Insert |
+ * |        |  All | Save |      |Ctrl+T|   _  |                 |      | Home |PgDown| PgUp | End  | Insert |
  * |--------+------+------+------+------+------|------.   .------|------+------+------+------+------+--------|
  * |        |      | Cut  |      | Copy |Paste |      |   |      | Prev | Next | Vol- | Vol+ | Play |        |
  * |--------+------+------+------+------+------|      |   |      |-------------+------+------+------+--------|
@@ -137,7 +137,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
    { KC_GRV,              KC_F1,     KC_F2,     KC_F3,     KC_F4,     KC_F5,     _______, KC_F6,      KC_F7,         KC_F8,         KC_F9,       KC_F10,         KC_F11 },
    { LCTL(KC_TAB),        _______,   LCTL(KC_D),LCTL(KC_R),LCTL(KC_W),KC_DELT   ,_______, _______    ,_______,       _______,       _______,     _______,        KC_F12 },
-   { _______,             KC_ALL,    KC_SAVE,   _______,   _______,   KC_UNDS   ,_______, _______    ,KC_HOME,       KC_PGDN,       KC_PGUP,     KC_END,         KC_INS },
+   { _______,             KC_ALL,    KC_SAVE,   _______,   LCTL(KC_T),KC_UNDS   ,_______, _______    ,KC_HOME,       KC_PGDN,       KC_PGUP,     KC_END,         KC_INS },
    { _______,             _______,   KC_CUT,    _______,   KC_COPY,   KC_PASTE,  _______ ,KC_MPRV    ,KC_MNXT,       KC_VOLD,       KC_VOLU,     KC_MPLY,        _______ },
    { LCTL(LALT(KC_DELT)), _______,   _______,   KC_UNDO,   KC_REDO,   _______,   _______ ,_______    ,LCTL(KC_LEFT), LCTL(KC_DOWN), LCTL(KC_UP), LCTL(KC_RGHT),  _______ }
 

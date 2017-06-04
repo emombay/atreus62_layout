@@ -51,7 +51,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 /* Keymap 0: Base Workman layer
  *
  * ,-------------------------------------------.                 ,-------------------------------------------.
- * |Ctrl/Win|   1  |   2  |   3  |   4  |   5  |                 |   6  |   7  |   8  |   9  |   0  |  RAISE |
+ * |    `   |   1  |   2  |   3  |   4  |   5  |                 |   6  |   7  |   8  |   9  |   0  |  RAISE |
  * |--------+------+------+------+------+------|                 |------+------+------+------+------+--------|
  * |  Tab   |   Q  |   D  |   R  |   W  |   B  |                 |   J  |   F  |   U  |   P  |   ;  |   \    |
  * |--------+------+------+------+------+------|                 |------+------+------+------+------+--------|
@@ -64,7 +64,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   */
   [_WRKMN] = {
 
-   { M(CTRLWIN), KC_1,     KC_2,    KC_3,    KC_4,       KC_5,   KC_NO,   KC_6,    KC_7,    KC_8,    KC_9,    KC_0 ,    TO(_RAISE) },
+   { KC_GRV,     KC_1,     KC_2,    KC_3,    KC_4,       KC_5,   KC_NO,   KC_6,    KC_7,    KC_8,    KC_9,    KC_0 ,    TO(_RAISE) },
    { KC_TAB,     KC_Q,     KC_D,    KC_R,    KC_W,       KC_B,   KC_NO,   KC_J,    KC_F,    KC_U,    KC_P,    KC_SCLN,  KC_BSLS },
    { CODE,       KC_A,     KC_S,    KC_H,    KC_T,       KC_G,   KC_NO,   KC_Y,    KC_N,    KC_E,    KC_O,    KC_I,     KC_QUOT },
    { KC_LSFT,    KC_Z,     KC_X,    KC_M,    KC_C,       KC_V,   KC_BSPC, KC_K,    KC_L,    KC_COMM, KC_DOT,  KC_SLSH,  KC_RSFT },
@@ -101,9 +101,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-------------------------------------------.                 ,-------------------------------------------.
  * |        |      |      |      |      |      |                 |      |      |      |      |      |        |
  * |--------+------+------+------+------+------|                 |------+------+------+------+------+--------|
- * |        |   +  |   =  |   {  |   }  |   |  |                 |      |      |TD_2EQ|      |      |        |
+ * |        |   +  |   =  |   {  |   }  |   |  |                 |      |TD_2EQ|      |      |      |        |
  * |--------+------+------+------+------+------|                 |------+------+------+------+------+--------|
- * |        |   &  |   -  |   (  |   )  |   `  |                 |      |      |TD_3EQ|TD_FUN|      |        |
+ * |        |   &  |   -  |   (  |   )  |   `  |                 |      |TD_3EQ|TD_FUN|      |      |        |
  * |--------+------+------+------+------+------|------.   .------|------+------+------+------+------+--------|
  * |        |   <  |   >  |   [  |   ]  |   ~  |      |   |      |      |      |      |      |      |        |
  * |--------+------+------+------+------+------|      |   |      |-------------+------+------+------+--------|
@@ -115,7 +115,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
    { _______  ,_______      ,_______      ,_______  ,_______  ,_______  ,_______ , _______  ,_______  ,  _______,    _______  ,_______  ,_______ },
    { _______  ,LSFT(KC_EQL), KC_EQL,       KC_LCBR,  KC_RCBR,  KC_PIPE,  _______ , _______  ,TD(TD_2EQ), _______,    _______  ,_______  ,_______ },
-   { _______  ,LSFT(KC_7),   KC_MINS,      KC_LPRN,  KC_RPRN,  KC_GRV,   _______ , _______  ,TD(TD_3EQ),  TD(TD_FUN),_______  ,_______  ,_______ },
+   { _______  ,LSFT(KC_7),   KC_MINS,      KC_LPRN,  KC_RPRN,  KC_GRV,   _______ , _______  ,TD(TD_3EQ), TD(TD_FUN), _______  ,_______  ,_______ },
    { _______  ,LSFT(KC_COMM),LSFT(KC_DOT), KC_LBRC,  KC_RBRC,  KC_TILD,  _______ , _______  ,_______  ,  _______,    _______  ,_______  ,_______ },
    { _______  ,KC_F8,        KC_F9,        KC_F10,   KC_F11,   _______  ,_______ , _______  ,_______  ,  _______,    _______  ,_______  ,_______ }
 
@@ -124,9 +124,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
    /* Keymap 3: UTIL (Lower) layer
  *
  * ,-------------------------------------------.                 ,-------------------------------------------.
- * |    `   |  F1  |  F2  |  F3  |  F4  |  F5  |                 |  F6  |  F7  |  F8  |  F9  |  F10 |  F11   |
+ * |PrintSc |  F1  |  F2  |  F3  |  F4  |  F5  |                 |  F6  |  F7  |  F8  |  F9  |  F10 |  F11   |
  * |--------+------+------+------+------+------|                 |------+------+------+------+------+--------|
- * |Ctrl+Tab|      |Ctrl+D|Ctrl+R|Ctrl+W|Delete|                 |      |      |      |Ctrl+P|      |  F12   |
+ * |Ctrl+Tab|      |Ctrl+D|Ctrl+R|Ctrl+W|Delete|                 |      |Ctrl+F|      |Ctrl+P|      |  F12   |
  * |--------+------+------+------+------+------|                 |------+------+------+------+------+--------|
  * |        |  All | Save |      |Ctrl+T|   _  |                 |      | Home |PgDown| PgUp | End  | Insert |
  * |--------+------+------+------+------+------|------.   .------|------+------+------+------+------+--------|
@@ -137,8 +137,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   */
   [_UTIL] = {
 
-   { KC_GRV,              KC_F1,     KC_F2,     KC_F3,     KC_F4,     KC_F5,     _______, KC_F6,      KC_F7,         KC_F8,         KC_F9,       KC_F10,         KC_F11 },
-   { LCTL(KC_TAB),        _______,   LCTL(KC_D),LCTL(KC_R),LCTL(KC_W),KC_DELT   ,_______, _______    ,_______,       _______,       LCTL(KC_P),  _______,        KC_F12 },
+   { KC_PSCR,             KC_F1,     KC_F2,     KC_F3,     KC_F4,     KC_F5,     _______, KC_F6,      KC_F7,         KC_F8,         KC_F9,       KC_F10,         KC_F11 },
+   { LCTL(KC_TAB),        _______,   LCTL(KC_D),LCTL(KC_R),LCTL(KC_W),KC_DELT   ,_______, _______    ,LCTL(KC_F),    _______,       LCTL(KC_P),  _______,        KC_F12 },
    { _______,             KC_ALL,    KC_SAVE,   _______,   LCTL(KC_T),KC_UNDS   ,_______, _______    ,KC_HOME,       KC_PGDN,       KC_PGUP,     KC_END,         KC_INS },
    { _______,             _______,   KC_CUT,    _______,   KC_COPY,   KC_PASTE,  _______ ,KC_MPRV    ,KC_MNXT,       KC_VOLD,       KC_VOLU,     KC_MPLY,        _______ },
    { LCTL(LALT(KC_DELT)), _______,   _______,   KC_UNDO,   KC_REDO,   _______,   _______ ,_______    ,LCTL(KC_LEFT), LCTL(KC_DOWN), LCTL(KC_UP), LCTL(KC_RGHT),  _______ }
